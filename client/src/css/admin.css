@@ -1,0 +1,26 @@
+.input-list__container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    column-gap: 20px;
+}
+.input-range__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+}
+.input-range {
+    display: flex;
+    align-items: center;
+}
+.input-range .input {
+    margin-left: 20px;
+}
+.input-list__remove {
+    color: black;
+    margin-left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.input-list__remove:hover {
+    color: red;
+}

@@ -1,0 +1,22 @@
+.forgot__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+}
+.forgot .btn {
+    width: 200px;
+}
+.forgot .forgot__more-btn {
+    width: 300px;
+    align-self: end;
+}
+
+@media screen and (max-width: 767px) {
+    .forgot__list {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+    }
+    .forgot .btn {
+        width: 100%;
+    }
+}

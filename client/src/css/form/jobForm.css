@@ -1,0 +1,28 @@
+.company .modal__content {
+    width: 90%;
+}
+.job-modal__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+    row-gap: 24px;
+}
+
+
+@media screen and (min-width: 1920px) {
+    .company .modal__content {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .company .modal__content {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .job-modal__body {
+        grid-template-columns: 1fr;
+    }
+}

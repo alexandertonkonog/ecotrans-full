@@ -1,0 +1,133 @@
+/*job-detail*/
+.job-detail-container .section-nav-container {
+    padding-bottom: 0;
+}
+.job-detail-container .main-title {
+    margin-bottom: 24px;
+}
+.job-detail__pay {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 70px;
+    grid-column: 1/25;
+}
+.job-detail__pay-des {
+    margin-left: 24px;
+    color: #859299;
+}
+.job-detail .btn {
+    grid-column: 1/8;
+    margin-bottom: 48px;
+}
+.job-detail .job__hh {
+    grid-column: 9/25;
+    grid-row: 2/3;
+    margin-bottom: 48px;
+}
+.job-detail__info {
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1/15;
+    margin-bottom: 24px;
+}
+.job-detail__description {
+    color: #595F62;
+    margin-bottom: 48px;
+}
+.job-detail__thank {
+    grid-column: 1/20;
+}
+
+
+
+
+@media screen and (min-width: 1920px) {
+    .job-detail__pay {
+        font-size: 38px;
+        line-height: 140%;
+    }
+    .job-detail__pay-des {
+        font-size: 20px;
+    }
+    .job-detail .btn {
+        grid-column: 1/6;
+    }
+    .job-detail .job__hh {
+        grid-column: 7/25;
+        grid-row: 2/3;
+        margin-bottom: 48px;
+    }
+    .job-detail__info {
+        grid-column: 1/13;
+    }
+    .job-detail__description {
+        font-size: 24px;        
+    }
+    
+    
+    
+}
+@media screen and (max-width: 1279px) {
+    .job-detail .btn {
+        grid-column: 1/10;
+    }
+    .job-detail .job__hh {
+        grid-column: 11/25;
+        justify-content: flex-start;
+    }
+    .job-detail__info {
+        grid-column: 1/21;
+    }
+    .job-detail__description {
+        font-size: 18px;      
+    }
+    .job-detail__thank {
+        grid-column: 1/25;
+    }
+    
+    
+}
+@media screen and (max-width: 767px) {
+    .job-detail .btn {
+        grid-column: 1/9;
+        margin-bottom: 40px;
+        font-size: 14px;
+    }
+    .job-detail__pay {
+        grid-column: 1/14;
+        margin-bottom: 8px;
+    }
+    .job-detail__pay-des {
+        display: none;
+    }
+    .job-detail .job__hh {
+        grid-column: 9/14;
+        margin-bottom: 40px;
+        border-radius: var(--main-radius);
+        border: 1px solid #BECCD2;
+        justify-content: center;
+        grid-row: 3/4;
+    }
+    .job-detail .job__hh svg {
+        margin-left: 0;
+    }
+    .job-detail .job__hh span {
+        display: none;
+    }
+    .job-detail__info {
+        grid-column: 1/14;
+        flex-direction: column;
+        grid-row: 2/3;
+        margin-bottom: 40px;
+    }
+    .job-detail__info * {
+        align-self: start;
+        margin-bottom: 8px;
+    }
+    .job-detail__description {
+        font-size: 14px;      
+    }
+    .job-detail__thank {
+        grid-column: 1/14;
+    }
+}

@@ -1,0 +1,118 @@
+/*doc*/
+.company-info .title-area {
+    grid-template-columns: 1fr;
+}
+
+/*info-shedule*/
+.info-shedule {
+    padding-bottom: 64px;
+}
+.info-shedule__block .info-shedule__text {
+    grid-column: 1/18;
+    grid-row: 1/1;
+}
+.info-shedule__clear {
+    grid-column: 1/25;
+    grid-row: 1/1;
+}
+
+/*info-contact*/
+.info-contact__list {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-template-rows: 1fr;
+    column-gap: 28px;
+}
+
+.info-contact__title {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+.info-contact__icon {
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+.info-contact__item-text {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: var(--text-grey);
+}
+.info-contact__body > * {
+    margin-bottom: 24px;
+}
+.info-contact__email {
+    margin-bottom: 0;
+}
+
+@media screen and (min-width: 1920px) {
+    /*doc*/
+    .doc__item {
+        padding: 16px;
+    }
+    .doc__title {
+        font-size: 24px;
+    }
+
+    /*info-shedule*/
+    .info-shedule__block .info-shedule__text {
+        grid-column: 1/17;
+    }
+
+    /*info-contact*/
+    .info-contact__item-text {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    /*doc*/
+    .doc__title {
+        font-size: 18px;
+    }
+
+    /*info-shedule*/
+    .info-shedule__block .info-shedule__text {
+        grid-column: 1/25;
+    }
+
+    /*info-contact*/
+    .info-contact__list {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 28px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /*doc*/
+    .doc__icon {
+        width: 38px;
+        height: 38px;
+    }
+    .doc__title {
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    /*info-shedule*/
+    .info-shedule__block .info-shedule__text {
+        grid-column: 1/11;
+    }
+    .info-shedule__clear {
+        grid-column: 1/11;
+    }
+    .title-area {
+        margin-bottom: 16px;
+    }
+
+    /*info-contact*/
+    .info-contact__title {
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .info-contact__item-text {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,481 @@
+/*tko-info*/
+.tko-info__des {
+    display: grid;
+    column-gap: 28px;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 16fr 8fr;
+    border-bottom: 1px solid #BECCD2;
+    padding-bottom: 64px;
+}
+.tko-info__img-container {
+    width: 100%;
+}
+.tko-info__img {
+    width: 100%;
+    border-radius: var(--main-radius);
+}
+.tko-info__des-right {
+    justify-self: center;
+}
+.tko__text {
+    margin-bottom: 32px;
+}
+.tko__text:last-child {
+    margin-bottom: 0;
+}
+.tko-info__des-title {
+    margin-bottom: 32px;
+    font-weight: 600;
+    font-size: 20px;
+}
+.tko-info__kgo {
+    padding-top: 64px;
+}
+.service .dec-title {
+    margin-bottom: 32px;
+}
+ 
+/*tko-slider*/
+
+.tko-slider__img {
+    width: 100%;
+    border-radius: var(--main-radius);
+}
+.tko-slider__title {
+    font-weight: 600;
+    font-size: 20px;
+    margin: 12px 0;
+}
+.tko__subtitle {
+    font-size: 20px;
+}
+.tko-slider__seo {
+    width: 78%;
+}
+
+/*tko__btn*/
+.tko__btn-area {
+    display: grid;
+    column-gap: 28px;
+}
+.tko__btn-text {
+    grid-column: 1/10;
+}
+.tko__btn-area .btn {
+    grid-column: 19/25;
+}
+
+/*pasport-info*/
+.pasport-info {
+    
+    border-bottom: 1px solid #BECCD2;
+    padding-bottom: 24px;
+}
+.pasport-des {
+    width: 75%;
+}
+.pasport-info .dec-title {
+    margin-bottom: 0;
+}
+.pasport-des__title {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+.pasport-des__important {
+    padding: 24px;
+    font-weight: 600;
+    font-size: 20px;
+    background: #F2F4F5;
+    border-radius: var(--main-radius);
+    margin-bottom: 24px;
+}
+
+/*pasport-sign*/
+
+.pasport-sign {
+    padding-top: 64px;
+    padding-bottom: 32px;
+    background-color: #F2F4F5;
+    border-top-right-radius: var(--main-radius);
+    border-bottom-right-radius: var(--main-radius);
+    grid-template-columns: repeat(24, 1fr);
+}
+.sign-border {
+    padding-left: 13px;
+    border-radius: var(--main-radius);
+    background: linear-gradient(360deg, #556A3B 0%, #7B893D 100%);
+}
+.pasport-sign__title {
+    grid-column: 2/21;
+    grid-row: 1/1;
+    align-self: center;
+}
+.pasport-sign__icon {
+    width: 138px;
+    height: 138px;
+    align-self: center;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column: 21/24;
+    grid-row: 1/1;
+    border-radius: 50%;
+}
+.pasport-sign__subtitle {
+    grid-column: 2/14;
+    grid-row: 2/3;
+    margin-bottom: 64px;
+}
+.pasport-sign .input-container {
+    grid-column: 2/9;
+    grid-row: 3/4;
+    align-self: end;
+}
+.pasport-sign .btn {
+    grid-column: 9/16;
+    grid-row: 3/4;
+    align-self: end;
+}
+.pasport-sign__privacy {
+    grid-column: 16/23;
+    grid-row: 3/4;
+    align-self: end;
+}
+.pasport-sign__stars {
+    grid-column: 2/25;
+    grid-row: 4/5;
+    margin-top: 64px;
+}
+.pasport-sign__small-text {
+    font-size: 14px;
+}
+.pasport-sign .input {
+    height: 56px;
+}
+
+/**pasport-trash*/
+.pasport-trash {
+    padding-top: 64px;
+}
+.pasport-trash__item {
+    margin-top: 48px;
+}
+.pasport-trash__icon {
+    width: 100%;
+    grid-row: 1/4;
+    grid-column: 1/7;
+    border: 1px solid #BECCD2;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: var(--main-radius);
+}
+.pasport-trash__item-title {
+    grid-row: 1/1;
+    grid-column: 8/25;
+    margin-bottom: 24px;
+    font-size: 24px;    
+} 
+.pasport-trash__text {
+    grid-row: 2/3;
+    grid-column: 8/25;
+} 
+
+@media screen and (min-width: 1920px) {
+    
+    /*tko-info*/
+    .tko__text {
+        font-size: 24px;
+    }
+    .tko-info__des-title {
+        font-size: 28px;
+        line-height: 140%;
+    }
+    /*tko-slider*/
+    
+    .tko-slider__title {
+        font-size: 24px;
+        margin-bottom: 24px;
+        margin-top: 12px;
+    }
+    .tko__subtitle {
+        font-size: 24px;
+    }
+    .tko-slider__seo {
+        width: 67%;
+    }
+
+
+    /*pasport-info*/
+    .pasport-des {
+        width: 80%;
+    }
+    .pasport-des__title {
+        font-size: 38px;
+        line-height: 140%;
+    }
+    .pasport-des__important {
+        font-size: 24px;
+    }
+
+    /*passport-sign*/
+
+    .pasport-sign__title {
+        grid-column: 2/19;
+    }
+    .pasport-sign__icon {
+        width: 184px;
+        height: 184px;
+    }
+    .pasport-sign__subtitle {
+        grid-column: 2/12;
+    }
+    .pasport-sign__privacy {
+        grid-column: 17/23;
+    }
+    .pasport-sign .input {
+        height: 70px;
+    }
+
+    /**pasport-trash*/
+    .pasport-trash {
+        padding-top: 72px;
+    }
+    .pasport-trash__item-title {
+        font-size: 38px;
+        line-height: 140%; 
+    } 
+    
+}
+@media screen and (max-width: 1279px) {
+    
+    /*tko-info*/
+    .tko-info__des {
+        grid-template-columns: 1fr;
+        padding-bottom: 48px;
+    }
+    .tko-info__kgo {
+        padding-top: 48px;
+    }
+    .tko-info__des-right {
+        grid-row: 1/1;
+        justify-self: start;
+        display: grid;
+        grid-template-columns: 11fr 14fr;
+        column-gap: 28px;
+        grid-auto-columns: 1fr;
+    }
+    .tko-info__des-left {
+        grid-row: 2/3;
+    }
+    /*tko-slider*/
+    
+    .tko-slider__title {
+        font-size: 18px;
+        margin: 12px 0;
+    }
+    .tko__subtitle {
+        font-size: 18px;
+    }
+    .tko-slider__seo {
+        width: 100%;
+    }
+
+    /*tko__btn*/
+    .tko__btn-text {
+        grid-column: 1/15;
+    }
+
+    /*pasport-info*/
+    .pasport-des {
+        width: 100%;
+    }
+    .pasport-des__title {
+        font-size: 20px;
+    }
+
+    /*passport-sign*/
+
+    .pasport-sign__title {
+        grid-column: 2/18;
+    }
+    .pasport-sign__icon {
+        transform: scale(0.75, 0.75);
+        grid-column: 19/24;
+        justify-self: end;
+    }
+    .pasport-sign__subtitle {
+        grid-column: 2/20;
+        margin-bottom: 48px;
+        font-size: 14px;
+    }
+    .pasport-sign .input-container {
+        grid-column: 2/14;
+    }
+    .pasport-sign .label__text {
+        font-size: 14px;
+    }
+    .pasport-sign .btn {
+        grid-column: 15/24;
+        font-size: 13px;
+    }
+    .pasport-sign__privacy {
+        grid-column: 13/24;
+        grid-row: 4/5;
+        margin-top: 32px;
+    }
+    .pasport-sign__stars {
+        margin-top: 32px;
+        grid-column: 2/9;
+        align-items: start;
+    }
+    .pasport-sign__small-text {
+        font-size: 12px;
+    }
+    /**pasport-trash*/
+    .pasport-trash {
+        padding-top: 48px;
+    }
+    .pasport-trash__item {
+        row-gap: 24px;
+        
+    }
+    
+    .pasport-trash__icon {
+       grid-row: 1/1;
+       grid-column: 1/6;
+       height: 100px;
+       background-size: 75% 75%;
+    }
+    .pasport-trash__item-title {
+        grid-row: 1/1;
+        grid-column: 7/17;
+        margin-bottom: 0;
+    } 
+    .pasport-trash__text {
+        grid-row: 2/3;
+        grid-column: 1/25;
+    } 
+}
+@media screen and (max-width: 767px) {
+    .dec-title {
+        font-size: 24px;
+    }
+    /*tko-info*/
+    .tko__text {
+        font-size: 14px;
+    }
+    .tko-info__des {
+        grid-template-columns: 1fr;
+        padding-bottom: 32px;
+    }
+    .tko-info__des-title {
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+    .tko-info__kgo {
+        padding-top: 32px;
+    }
+    .tko-info__des-right {
+        grid-template-columns: 1fr;
+        margin-bottom: 32px;
+    }
+    /*tko-slider*/
+    
+    .tko-slider__title {
+        font-size: 20px;
+    }
+    .tko__subtitle {
+        font-size: 14px;
+    }
+
+    /*tko__btn*/
+    .tko__btn-text {
+        grid-column: 1/11;
+        grid-row: 1/1;
+    }
+    .tko__btn-area .btn {
+        grid-column: 1/11;
+        grid-row: 2/3;
+    }
+    /*pasport-info*/
+    
+    .pasport-des__title {
+        font-size: 18px;
+    }
+    .pasport-des__important {
+        font-size: 14px;
+    }
+
+    /*passport-sign*/
+    .sign-border {
+        padding-left: 0;
+        padding-bottom: 10px;
+    }
+    .pasport-sign {
+        padding-top: 40px;
+        padding-bottom: 30px;
+        grid-template-columns: repeat(12, 1fr);
+        border-radius: 0;
+        border-top-right-radius: var(--main-radius);
+        border-top-left-radius: var(--main-radius);
+    }
+    .pasport-sign__title {
+        grid-column: 2/12;
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+    .pasport-sign__icon {
+        display: none;
+    }
+    .pasport-sign__subtitle {
+        grid-column: 2/12;
+        margin-bottom: 32px;
+        font-size: 14px;
+    }
+    .pasport-sign .input-container {
+        grid-column: 2/12;
+        margin-bottom: 32px;
+    }
+    .pasport-sign .btn {
+        grid-column: 2/12;
+        grid-row: 4/5;
+        font-size: 14px;
+    }
+    .pasport-sign__privacy {
+        grid-column: 2/12;
+        grid-row: 5/6;
+        margin-top: 32px;
+    }
+    .pasport-sign__stars {
+        margin-top: 32px;
+        grid-row: 6/7;
+        grid-column: 2/12;
+    }
+
+    /**pasport-trash*/
+    .pasport-trash {
+        padding-top: 32px;
+    }
+    .pasport-trash__item {
+        row-gap: 16px;
+        grid-template-columns: repeat(12, 1fr);
+        align-items: center;
+        margin-top: 40px;
+    }
+    .pasport-trash__icon {
+       grid-row: 1/1;
+       grid-column: 1/6;
+       height: 72px;
+       background-size: 60% 60%;
+    }
+    .pasport-trash__item-title {
+        grid-row: 1/1;
+        grid-column: 6/13;
+        font-size: 18px;
+    } 
+    .pasport-trash__text {
+        grid-row: 2/3;
+        grid-column: 1/13;
+    } 
+}

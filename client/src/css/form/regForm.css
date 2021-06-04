@@ -1,0 +1,33 @@
+.reg-block .modal__body {
+    width: 42%;
+}
+.reg-block .btn {
+    width: 100%;
+}
+.enter-text {
+    color: var(--main-color);
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+}
+
+@media screen and (min-width: 1920px) {
+    .reg-block .modal__body {
+        width: 34%;
+    }
+    .enter-text {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .reg-block .modal__body {
+        width: 66%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .reg-block .modal__body {
+        width: 100%;
+    }
+}

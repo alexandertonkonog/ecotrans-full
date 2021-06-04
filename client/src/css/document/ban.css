@@ -1,0 +1,63 @@
+.ban__list {
+    display: grid;
+    grid-template-columns: repeat(2, 12fr);
+    column-gap: 28px;
+    row-gap: 24px;
+}
+.ban__list_second {
+    display: grid;
+    grid-template-columns: repeat(3, 8fr);
+    column-gap: 28px;
+    row-gap: 24px;
+}
+.ban__item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 32px;
+    border-radius: var(--main-radius);
+}
+.ban__item-img {
+    margin-right: 24px;
+}
+
+@media screen and (min-width: 1920px) {
+    .ban__item-img {
+        width: 110px;
+        height: 110px;
+    }
+    .ban__list, .ban__list_second {
+        row-gap: 32px;
+    }
+    
+}
+@media screen and (max-width: 1279px) {
+    .ban__item-img {
+        width: 54px;
+        height: 54px;
+        margin-right: 20px;
+    }
+    .ban__item {
+        padding: 24px;
+    }
+    .ban__list_second {
+        grid-template-columns: repeat(2, 12fr);
+    }
+    .ban__item-text {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .ban__item {
+        padding: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .ban__item-img {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    .ban__list, .ban__list_second {
+        grid-template-columns: repeat(1, 13fr);
+    }
+}

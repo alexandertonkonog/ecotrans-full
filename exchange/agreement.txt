@@ -1,0 +1,44 @@
+Заключение договора
+
+Запрос, метод POST, multipart/form-data:
+{
+    "personType": "0, или 1, или 2 (физ лицо, ип, юр лицо)", <number>
+    "service_id": "идентификатор услуги", <string>
+    "personEmployee": "имя контактного лица", <string>
+    "personName": "название организации, или имя лица, или наименование ип", <string>
+    "email": "электронная почта", <string>
+    "number": "номер телефона", <string>
+
+    //для юр лиц и ип
+    lawStreet: "юр адрес улица", <string>
+    lawHouse: "юр адрес дом", <string>
+    lawKv: "юр адрес квартира (офис)" <string>
+    postStreet: "почт адрес улица", <string>
+    postHouse: "почт адрес дом", <string>
+    postKv: "почт адрес квартира (офис)" <string>
+    //для юр лиц и ип
+    
+    //для всех
+    factStreet: "факт адрес улица", <string>
+    factHouse: "факт адрес дом", <string>
+    factKv: "факт адрес квартира (офис)" <string>
+
+    //для всех
+    "inn": "ИНН лица", <string>
+
+    //для юр лиц и ип
+    "rs": "Расчетный счет", <string>
+    "kpp": "КПП", <string>
+    "ks": "корреспондентский счет", <string>
+    "ogrn": "огрн", <string>
+    "bik": "БИК", <string>
+    "bank": "наименование банка", <string>
+    //для юр лиц и ип
+
+    paymentType: "0, 1 осуществление расчета (норматив или контейнер)", <number>
+    trashSize: "объем в литрах", <number>
+
+    file1, file2 ... - <FormData>
+}
+
+Ответ кодом: 200 или код ошибки.

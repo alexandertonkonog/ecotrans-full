@@ -1,0 +1,8 @@
+.error__code {
+    font-size: 80px;
+    color: var(--main-color);
+}
+.error__btn {
+    width: 150px;
+    margin: auto;
+}

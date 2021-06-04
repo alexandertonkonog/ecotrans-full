@@ -1,0 +1,31 @@
+/*home-modal*/
+.trash-modal__body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
+    column-gap: 28px;
+}
+.trash-modal__textarea {
+    grid-row: 2/4;
+}
+.trash-modal__textarea .input_textarea {
+    height: calc(100% - 40px);
+}
+
+@media screen and (max-width: 767px) {
+    .trash-modal__body {
+        grid-template-columns: 1fr;
+    }
+    .trash-modal__number {
+        grid-row: 2/3;
+    }
+    .trash-modal__address {
+        grid-row: 3/4;
+    }
+    .trash-modal__textarea {
+        grid-row: 4/5;
+    }
+    .trash-modal__textarea .input_textarea {
+        height: 180px;
+    }
+}
