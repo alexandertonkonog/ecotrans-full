@@ -11,13 +11,13 @@ import admin from '../../../images/message/admin.png';
 import skrepka from '../../../images/message/skrepka.svg';
 
 const Messages = (props) => {
-    let dispatch = useDispatch();
-    let params = useParams();
     let [moreLoading, setMoreLoading] = useState(false);
-    let id = params.id;
-    let messages = useSelector(state => state.message.messages[id]);
-    let messageLoading = useSelector(state => state.message.messageLoading);
-    let dialog = props.dialogs.find(item => item.id === +id);
+    const dispatch = useDispatch();
+    const params = useParams();
+    const id = params.id;
+    const messages = useSelector(state => state.message.messages[id]);
+    const messageLoading = useSelector(state => state.message.messageLoading);
+    const dialog = props.dialogs.find(item => item.id === +id);
     const getMoreMessageHandle = async () => {
         setMoreLoading(true);
         let offset = messages?.list?.length || 0;

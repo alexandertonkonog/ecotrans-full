@@ -18,16 +18,17 @@ const Modal = (props) => {
     let [btnLoading, setBtnLoading] = useState(false)
     const dispatch = useDispatch();
     const onSubmit = async (values) => {
-        await setBtnLoading(true);
+        setBtnLoading(true);
         let result = await dispatch(makeNewMessageTheme(values));
         if (result.success) {
             props.openModal({visible: true, result: 1, error: null});
-            props.dispatch(props.getDialogs());
+            dispatch(props.getDialogs());
         } else {
             props.openModal({visible: true, result: 2, error: result.message});
         }
-        await setBtnLoading(false);
+        setBtnLoading(false);
     }
+    
     return (
         <Form
             onSubmit={onSubmit}>
