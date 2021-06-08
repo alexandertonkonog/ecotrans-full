@@ -24,7 +24,6 @@ import Privacy from '../Privacy/Privacy';
 import Create from '../Create';
 
 const getRedirectBlock = (Node) => (props) => {
-
     const dispatch = useDispatch();
     const history = useHistory();
     const isAuthChecked = useSelector(state => state.auth.isAuthChecked);
@@ -113,6 +112,12 @@ const Wrapper = (props) => {
                     <Error 
                         name="Вы не авторизованы" 
                         code={401}
+                        text="Чтобы просматривать страницы Личного кабинета, авторизуйтесь, кликнув по кнопке в верхнем правом углу" />
+                </Route>
+                <Route path="/success">
+                    <Error 
+                        name="Вы подтвердили электронную почту" 
+                        code="Успешно"
                         text="Чтобы просматривать страницы Личного кабинета, авторизуйтесь, кликнув по кнопке в верхнем правом углу" />
                 </Route>
                 <Route path="*">

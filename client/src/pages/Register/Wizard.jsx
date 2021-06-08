@@ -47,7 +47,7 @@ const Wizard = (props) => {
                 <form onSubmit={handleSubmit}>
                     <h2 className="main-title mb-small">Регистрация</h2>
                     {activePage}
-                    {props.regError && <p className="error main-text mb-middle">{props.regError}</p>}
+                    {props.regError && <p className="error mb-middle">{props.regError}</p>}
                     {page > 0 && (
                         <button onClick={() => prev(values)} className="btn btn_white mb-middle btn_border">
                             Предыдущий шаг

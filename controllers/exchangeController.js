@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { mailRegistration, getMailHTML } = require('../utils/mail');
-const { UserData, User, Agreement, Test, Payment, Account } = require('../models/models');
+const { Agreement, Payment, Account, Service } = require('../models/models');
 /**
  * [cutArray Делит большой массив на массивы указанной длины]
  * @param  {[array]} [big array for spliting on defined length]
@@ -8,7 +8,6 @@ const { UserData, User, Agreement, Test, Payment, Account } = require('../models
  * @return {[array]}  [array of arrays defined length]
 */
 const cutArray = (array, max) => {
-    
     let resultArray = [];
     let arr = [...array];
     if (!arr.length) return resultArray;
@@ -28,7 +27,7 @@ const cutArray = (array, max) => {
 
 class ExchangeController {
     async setData(req, res) {
-        const {agreements, payments, accounts} = req.body;
+        const {agreements, payments, accounts, services} = req.body;
         const response = {
             messages: []
         };
@@ -37,7 +36,7 @@ class ExchangeController {
                 await Agreement.bulkCreate(
                     agreements,
                     {
-                        updateOnDuplicate: ['date', 'balance', 'ls', 'inn', 
+                        updateOnDuplicate: ['date', 'balance', 'ls', 'inn', 'email', 
                             'rs', 'kpp', 'ks', 'ogrn', 'bik', 'bank', 
                             'lawAddress', 'postAddress', 'factAddress', 'userType']
                     }
@@ -56,6 +55,14 @@ class ExchangeController {
             if (accounts.length) {
                 await Account.bulkCreate(
                     accounts,
+                    { updateOnDuplicate: ['name', 'date', 'link'] }
+                ); 
+            } else {
+                response.messages.push({message: 'Нет документов взаиморасчетов'});
+            }
+            if (services.length) {
+                await Service.bulkCreate(
+                    services,
                     { updateOnDuplicate: ['name', 'date', 'link'] }
                 ); 
             } else {

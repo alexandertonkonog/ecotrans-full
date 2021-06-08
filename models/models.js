@@ -1,4 +1,4 @@
-import {Sequelize} from 'sequelize';
+const { Sequelize } = require('sequelize');
 const sequelize = require('../db/db');
 require('dotenv').config();
 
@@ -236,6 +236,9 @@ const Agreement = sequelize.define('Agreement', {
     userType: {
         type: Sequelize.INTEGER,
     },
+    email: {
+        type: Sequelize.STRING,
+    },
 }, {tableName: 'agreements'});
 
 UserData.hasMany(Agreement, {foreignKey: 'userId', as: 'agreements'});
@@ -252,7 +255,7 @@ const Service = sequelize.define('Service', {
     }
 }, {tableName: 'services'});
 
-Service.hasOne(Agreement, {foreignKey: 'serviceId', as: 'agreements'});
+Service.hasMany(Agreement, {foreignKey: 'serviceId', as: 'agreements'});
 Agreement.belongsTo(Service, {as: 'service', foreignKey: 'serviceId'});
 
 const Payment = sequelize.define('Payment', {
@@ -520,9 +523,8 @@ File.belongsToMany(TrashPlace, {through: 'trashplaces_files', as: 'places'});
 Message.belongsToMany(File, {through: 'messages_files', as: 'files'});
 File.belongsToMany(Message, {through: 'messages_files', as: 'messages'});
 
-//нельзя обновлять инфоблоки
+// нельзя обновлять инфоблоки
 // sequelize.sync({ alter: true });
-
 
 module.exports = {
     Role,

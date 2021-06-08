@@ -5,21 +5,11 @@ const jwt = require('jsonwebtoken');
 const url = require('url');
 require('dotenv').config()
 const { mailRegistration, getMailHTML, mailTo } = require('../utils/mail');
-const { TempUser, User, UserData, Agreement } = require('../models/models');
+const { TempUser, User, UserData, Agreement, Setting } = require('../models/models');
 
 const generateWebToken = (login, role, id) => {
     const payload = {login, role, id};
     return jwt.sign(payload, process.env.SERVER_SECRET_KEY, {expiresIn: '7d'});
-}
-
-const getUserIfEmailExist = async (data) => {
-    // try {
-    //     const result = await axios.post(process.env.ONEC_URL + '/registration', data);
-    //     return true;
-    // } catch {
-    //     return false;
-    // }
-    return true;
 }
 
 const generateCode = (len) => {
@@ -37,35 +27,54 @@ class AuthContoller {
             return res.status(400).json({message: 'Не все поля заполнены правильно', errors})
         }
         try {
-            let user = await User.findOne({where: {login: req.body.login}});
-            let tempUser = await TempUser.findOne({where: {login: req.body.login}});
+            const [user, tempUser, agree] = await Promise.all([
+                User.findOne({where: {login: req.body.login}}),
+                TempUser.findOne({where: {login: req.body.login}}),
+                Agreement.findOne({
+                    where: {
+                        email: req.body.email.toLowerCase(), 
+                        ls: req.body.login
+                    }
+                })
+            ]);
+
             if (user || tempUser) {
                 return res.status(400).json({message: 'Аккаунт для данного лицевого счета уже создан'});
             };
+            if (!agree) {
+                return res.status(400).json({message: 'Почта не привязана к данному лицевому счету. Обратитесь в контактный центр для изменения данных в системе.'});
+            }
+
             const hashPassword = bcrypt.hashSync(req.body.password, Number(process.env.SERVER_SOLT));
             const userHash = Buffer.from(req.body.login).toString('base64');
             const userHashEncoded = encodeURIComponent(userHash);
-            const text = getMailHTML('http://localhost:8000/auth/verify/' + userHashEncoded);
 
-            let [newUser, result] = await Promise.all([
+            const [text, newUser] = await Promise.all([
+                getMailHTML('http://localhost:8000/api/auth/verify/' + userHashEncoded),
                 TempUser.create({
                     login: req.body.login,
                     password: hashPassword,
                     number: req.body.phone,
-                    email: req.body.email,
+                    email: req.body.email.toLowerCase(),
                     hash: userHash
-                }),
-                getUserIfEmailExist()
-            ])            
+                })
+            ])     
             
-            if (result) {
-                await mailRegistration(req.body.email, text, true, 'Подтверждение регистрации на сайте');
-                return res.json({success: true});
+            if (newUser) {
+                let mailResult = await mailRegistration(req.body.email, text, true, 'Подтверждение регистрации на сайте');
+                if (mailResult) {
+                    return res.json({success: true});
+                } else {
+                    await newUser.destroy();
+                    //log
+                    return res.status(500).json({message: 'Аккаунт не создан. Попробуйте еще раз или зайдите позже'});
+                }
             } else {
                 return res.status(401).json({message: 'Данная почта не привязана к лицевому счету. Чтобы привязать почту, обратитесь к специалисту по номеру, расположенному вверху экрана или запросите обратный звонок. Через некоторое время почта будет привязана к лицевому счету и Вы сможете войти в систему по указанным Вами данным.'})
             }
         } catch (e) {
             //log
+            console.log(e)
             return res.status(500).json({message: 'Внутренняя ошибка сервера'});
         }
     }
@@ -98,9 +107,9 @@ class AuthContoller {
     async verify(req, res) {
         if (req.params && req.params.hash) {
             let hash = req.params.hash;
-            let tempUser = await TempUser.findOne({where: {hash}});
-            if (tempUser) {
-                try {
+            try {
+                let tempUser = await TempUser.findOne({where: {hash}});
+                if (tempUser) {
                     const newUser = await User.create({
                         login: tempUser.login,
                         password: tempUser.password,
@@ -109,23 +118,27 @@ class AuthContoller {
                         UserData.create({
                             id: newUser.id,
                             number: tempUser.number,
-                            email: tempUser.email,
+                            email: tempUser.email.toLowerCase(),
                             roleId: 4
                         }),
                         TempUser.destroy({where: {id: tempUser.id}}),
                         Agreement.update(
                             {userId: newUser.id},
                             {where: {ls: newUser.login}}
-                        )
+                        ),
+                        Setting.findOne({where: {serviceName: 'siteAddress'}})
                     ]);
-                    res.redirect('/auth/success');
-                } catch (e) {
-                    //log
-                    return res.status(500).json({message: 'Внутренняя ошибка сервера'});
-                }                
-            } else {
-                return res.status(404).json({message: 'Страница не найдена'});
-            }
+
+                    //заменить ссылку
+                    const fullSiteUrl = resultUserCreating[3].value + 'success';
+                    res.redirect('http://localhost:3000/success');  
+                } else {
+                    return res.status(404).json({message: 'Страница не найдена'});
+                }
+            } catch (e) {
+                //log
+                return res.status(500).json({message: 'Внутренняя ошибка сервера'});
+            }   
         } else {
             return res.status(404).json({message: 'Страница не найдена'});
         }

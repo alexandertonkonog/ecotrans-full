@@ -11,7 +11,7 @@ class API {
             },
             responseType: 'application/json'
         }
-        this.url = 'http://localhost:8000'
+        this.url = 'http://localhost:8000/api'
     }
     
     async get(url) {

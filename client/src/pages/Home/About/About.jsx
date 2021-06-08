@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import img from '../../../images/home/map.svg';
 
 const About = () => {
@@ -22,7 +23,7 @@ const About = () => {
                             );
                         })}
                     </ul>
-                    <button className="btn btn_green btn_main home-about__btn">Подробнее</button>
+                    <Link to="/o-kompanii" className="btn btn_green btn_main home-about__btn">Подробнее</Link>
                 </div>
                 <img src={img} className="home-about__img" alt="Карта" title="Карта" />
             </div>

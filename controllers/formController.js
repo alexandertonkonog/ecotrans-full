@@ -8,36 +8,25 @@ const {mailTrashPlace, usualMail, resumeMail} = require('../utils/mail');
 require('dotenv').config();
 
 const _trashPlaceLoginedPerson = async (req, res) => {
-    let { id } = jwt.verify(req.accessToken, process.env.SERVER_SECRET_KEY);
-    let userData = await UserData.findByPk(id);
+    const { id } = jwt.verify(req.accessToken, process.env.SERVER_SECRET_KEY);
+    const userData = await UserData.findByPk(id);
     const data = {
         email: userData.email,
         number: userData.number,
         address: req.body.address,
         text: req.body.text,
     };
-    let newTrashPlace = await _createNewTrashPlace(data);
-    let files;
-    if (newTrashPlace && req.files && req.files.length) {
-        files = await File.bulkCreate(
-            req.files.map(item => ({link: item.filename, type: 'other', placeId: newTrashPlace.id})),
-        );
-    }    
     
-    let info = await mailTrashPlace(data, files);
+    if (req.files && req.files.length) {
+        data.files = req.files.map(item => ({link: item.filename, type: 'other'}));
+    }
+    const newTrashPlace = await _createNewTrashPlace(data);
+    
+    const info = await mailTrashPlace(data);
     if (info) {
         return res.sendStatus(200);
     } else {
-        await Promise.all([
-            File.destroy({where: {
-                id: files.map(item => {
-                    let id = item.id;
-                    return id;
-                }),
-                type: 'other'
-            }}),
-            newTrashPlace.destroy()
-        ])
+        await newTrashPlace.destroy();
         return res.status(500).json({message: 'Внутренняя ошибка сервера'});
     }
 }
@@ -46,29 +35,17 @@ const _trashPlaceNotLoginedPerson = async (req, res) => {
     const {number} = req.body;
     const condition = number && validator.isNumeric(number);
     if (condition) {
-        let body = {...req.body, files: makeFilesJSONForDb(req)}
+        let body = req.body;
+        if (req.files && req.files.length) {
+            body.files = req.files.map(item => ({link: item.filename, type: 'other'}))
+        }
         try {
-            let result = await _createNewTrashPlace(body);
-            let files;
-            if (result && req.files && req.files.length) {
-                files = await File.bulkCreate(
-                    req.files.map(item => ({link: item.filename, type: 'other', placeId: result.id})),
-                ); 
-            }  
-            let info = await mailTrashPlace(body, files);
+            const result = await _createNewTrashPlace(body);
+            const info = await mailTrashPlace(body);
             if (info) {
                 return res.sendStatus(200);
             } else {
-                await Promise.all([
-                    File.destroy({where: {
-                        id: files.map(item => {
-                            let id = item.id;
-                            return id;
-                        }),
-                        type: 'other'
-                    }}),
-                    result.destroy()
-                ])
+                await result.destroy();
                 return res.status(500).json({message: 'Не удалось отправить сообщение'})
             }
         } catch (e) {
@@ -96,24 +73,29 @@ const _makeNewQuestionLoginedPerson = async (req, res) => {
 }
 
 const _makeNewQuestionNotLoginedPerson = async (req, res) => {
-    let number = validator.isNumeric(req.body.number) && validator.isLength(req.body.number, {min: 10, max: 20});
-    let email = validator.isEmail(req.body.email);
-    if (!number || !email) return res.status(400).json({message: 'Неправильно заполнены обязательные поля'});
-    let text = `Пользователь сайта задал вопрос. Его телефон: ${req.body.number}. Его электронная почта: ${req.body.email}. \n Его вопрос: ${req.body.text}`;
-    let result = await usualMail(text, 'Вопрос на сайте ООО ЭКОТРАНС');
-    if (result) return res.json({success: true});
-    else return res.status(500).json({message: 'Внутренняя ошибка сервера'}); 
+    try {
+        let number = validator.isNumeric(req.body.number) && validator.isLength(req.body.number, {min: 10, max: 20});
+        let email = validator.isEmail(req.body.email);
+        if (!number || !email) return res.status(400).json({message: 'Неправильно заполнены обязательные поля'});
+        let text = `Пользователь сайта задал вопрос. Его телефон: ${req.body.number}. Его электронная почта: ${req.body.email}. \n Его вопрос: ${req.body.text}`;
+        let result = await usualMail(text, 'Вопрос на сайте ООО ЭКОТРАНС');
+        if (result) return res.json({success: true});
+        else return res.status(500).json({message: 'Внутренняя ошибка сервера'}); 
+    } catch (e) {
+        //log
+        console.log(e)
+        return res.status(500).json({message: 'Внутренняя ошибка сервера'});
+    }
 }
 
 const _createNewTrashPlace = async (body) => {
-    console.log(body)
-    try {
-        const newTrashPlace = await TrashPlace.create(body);
-        return newTrashPlace;
-    } catch (e) {
-        //log
-        return null;
-    }
+    const newTrashPlace = await TrashPlace.create(
+        body, 
+        {
+            include: ['files']
+        }
+    );
+    return newTrashPlace;
 }
 
 class FormContoller {
@@ -173,7 +155,6 @@ class FormContoller {
         const errors = validationResult(req);
         if (req.multerFileError) return res.status(400).json({message: req.multerFileError});
         if (!errors.isEmpty()) return res.status(400).json({message: 'Не заполнены обязательные поля'})
-        console.log(req.files);
         if (!req.files || !req.files.length) {
             return res.status(400).json({message: 'Не прикреплено резюме'})
         }

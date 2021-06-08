@@ -1,19 +1,11 @@
-import express from "express"
-import path from "path"
+const express = require("express")
 const sequelize = require('./db/db')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
-// import {handleRender} from './ssr/ssr'
+// const {handleRender} = require( './ssr/ssr')
 
-import {authRouter} from './routes/authRouter'
-import {testRouter} from './routes/testRouter'
-import {homeRouter} from './routes/homeRouter'
-import {formRouter} from './routes/formRouter'
-import {messageRouter} from './routes/messageRouter'
-import {profileRouter} from './routes/profileRouter'
-import {exchangeRouter} from './routes/exchangeRouter'
-import {iblockRouter} from './routes/iblockRouter'
+const { rootRouter } = require('./routes/rootRouter')
 
 const PORT = 8000
 const app = express()
@@ -41,14 +33,7 @@ app.use(cookieParser())
 //   handleRender(req, res)
 // });
 
-app.use('/auth', authRouter)
-app.use('/test', testRouter)
-app.use('/home', homeRouter)
-app.use('/form', formRouter)
-app.use('/message', messageRouter)
-app.use('/profile', profileRouter)
-app.use('/exchange', exchangeRouter)
-app.use('/iblock', iblockRouter)
+app.use('/api', rootRouter)
 
 app.use('/static', express.static('./client/public'))
 app.use('/static', express.static('./client/build'))

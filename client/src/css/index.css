@@ -665,6 +665,7 @@ ul {
 .error {
     text-align: left;
     color: #EB5757;
+    font-size: 16px;
 }
 
 /*loader*/
@@ -857,11 +858,6 @@ ul {
     /*header-modal*/
     .header-modal__body {
         column-gap: 28px;
-    }
-
-    /*error*/
-    .error {
-        height: 70px;
     }
 }
 

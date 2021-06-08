@@ -88,7 +88,7 @@ const Register = (props) => {
                                 )
                             }
                         })}
-                        {enterError && <p className="error main-text mb-middle">{enterError}</p>}
+                        {enterError && <p className="error mb-middle">{enterError}</p>}
                         <LoadButton addClass="mb-middle" loading={isLoading} text="Войти" />
                         <p className="main-text enter-text mb-small" onClick={() => props.changeRegisterModal(2)}>Нет аккаунта? Зарегистрируйтесь</p>
                         <p className="main-text enter-text"><Link onClick={() => props.changeRegisterModal(false)} to="/forgot-password" className="text-center enter-text">Забыли пароль?</Link></p>

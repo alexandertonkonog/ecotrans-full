@@ -75,8 +75,7 @@
     grid-template-columns: 11fr 5fr;
 }
 .lk .select__label {
-    font-size: 18px;
-    color: black;
+    
 }
 
 /*personal-rek*/
@@ -206,9 +205,6 @@
         row-gap: 32px;
         grid-template-columns: 14fr 7fr;
     }
-    .lk .select__label {
-        font-size: 14px;
-    }
 
     /*personal-btns*/
     .personal-btns {
@@ -286,9 +282,7 @@
         row-gap: 24px;
         grid-template-columns: 1fr;
     }
-    .lk .select__label {
-        font-size: 14px;
-    }
+    
 
     /*personal-rek*/
     .personal-rek__row {
