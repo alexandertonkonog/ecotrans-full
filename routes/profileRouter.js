@@ -1,11 +1,10 @@
-import Router from 'express';
-import profileController from '../controllers/profileController';
-import { transliterate as tr, slugify } from 'transliteration';
+const Router = require('express');
+const profileController = require('../controllers/profileController');
 const {tokenMiddleware} = require('../middlewares/authMiddleware');
 const {check} = require("express-validator");
 const multer  = require("multer");
 
-export const profileRouter = Router();
+const profileRouter = Router();
 
 profileRouter.get('/', [
     tokenMiddleware
@@ -49,3 +48,7 @@ profileRouter.get('/accounts', [
 ], profileController.getAccounts);
 
 profileRouter.get('/services', profileController.getServices);
+
+module.exports = {
+    profileRouter
+}

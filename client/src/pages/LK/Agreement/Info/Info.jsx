@@ -42,7 +42,7 @@ const Info = (props) => {
                 <h1 className="small-title personal-info__title mb-large">Заключить договор</h1>
                 <h2 className="micro-title personal-per__title mb-middle">Выберите тип плательщика</h2>
                 <div className="personal-per__body">
-                    <Field name="personType" defaultValue={0} validate={isRequired}>
+                    <Field name="userType" defaultValue={0} validate={isRequired}>
                         {fieldProps => (
                             <p className="tabs">
                                 {data.person.data.map(item => <span 

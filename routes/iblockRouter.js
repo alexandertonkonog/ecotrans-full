@@ -1,11 +1,11 @@
-import Router from 'express';
-import iblockContoller from '../controllers/iblockContoller';
+const Router = require('express');
+const iblockContoller = require('../controllers/iblockContoller');
 const {tokenMiddleware} = require('../middlewares/authMiddleware');
-import { slugify } from 'transliteration';
+const { slugify } = require('transliteration');
 const multer  = require("multer");
 const path = require("path");
 
-export const iblockRouter = Router();
+const iblockRouter = Router();
 
 const images = [
     "image/jpeg", 
@@ -97,3 +97,7 @@ iblockRouter.post('/entity/manyset', [
         name: 'files', maxCount: 10
     }])
 ], iblockContoller.setSomeEntity);
+
+module.exports = {
+    iblockRouter
+}

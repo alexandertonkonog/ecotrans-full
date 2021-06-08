@@ -1,9 +1,9 @@
 const {check} = require('express-validator');
 const {tokenMiddleware} = require('../middlewares/authMiddleware');
-import Router from 'express';
-import authContoller from '../controllers/authContoller';
+const Router = require('express');
+const authContoller = require('../controllers/authContoller');
 
-export const authRouter = Router();
+const authRouter = Router();
 
 authRouter.post('/registration', [
     check('email', 'Неправильный формат электронной почты').isEmail(),
@@ -21,3 +21,7 @@ authRouter.post('/forgot', [
 ], authContoller.forgot)
 
 authRouter.post('/', [ tokenMiddleware ], authContoller.auth);
+
+module.exports = {
+    authRouter
+}

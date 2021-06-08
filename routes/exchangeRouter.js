@@ -1,9 +1,13 @@
 const {exchangeAuthMiddleware} = require('../middlewares/authMiddleware');
-import Router from 'express';
-import exchangeController from '../controllers/exchangeController';
+const Router = require('express');
+const exchangeController = require('../controllers/exchangeController');
 
 export const exchangeRouter = Router();
 
-exchangeRouter.post('/set', [exchangeAuthMiddleware], exchangeController.setData);
+exchangeRouter.post('/', [exchangeAuthMiddleware], exchangeController.setData);
 
-exchangeRouter.get('/get', exchangeController.getTest);
+// exchangeRouter.get('/get', exchangeController.getTest);
+
+module.exports = {
+    exchangeRouter
+}

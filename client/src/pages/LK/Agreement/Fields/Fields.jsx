@@ -4,7 +4,7 @@ import File from '../../../../components/File/File';
 import { isRequired } from '../../../../dev/validate';
 
 const Fields = (props) => {
-    let userType = useField('personType').input.value;
+    let userType = useField('userType').input.value;
     const data = {
         '0': [
             {id: 1, req: true, name: 'Копия протокола общего собрания об избрании формы управления многоквартирным домом'},

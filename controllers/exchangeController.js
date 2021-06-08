@@ -91,4 +91,4 @@ class ExchangeController {
     }
 }
 
-export default new ExchangeController();
+module.exports = new ExchangeController();

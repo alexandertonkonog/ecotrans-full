@@ -264,4 +264,4 @@ class FormContoller {
     }
 }
 
-export default new FormContoller();
+module.exports = new FormContoller();

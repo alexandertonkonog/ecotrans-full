@@ -193,4 +193,4 @@ class ProfileController {
     }
 }
 
-export default new ProfileController();
+module.exports = new ProfileController();

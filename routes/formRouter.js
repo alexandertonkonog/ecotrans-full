@@ -2,11 +2,11 @@ const {check} = require('express-validator');
 const multer  = require("multer");
 const path = require("path");
 const {tokenMiddleware} = require('../middlewares/authMiddleware');
-import Router from 'express';
-import { slugify } from 'transliteration';
-import formContoller from '../controllers/formController';
+const Router = require('express');
+const { slugify } = require('transliteration');
+const formContoller = require('../controllers/formController');
 
-export const formRouter = Router();
+const formRouter = Router();
 
 const images = [
     "image/jpeg", 
@@ -135,3 +135,7 @@ formRouter.post('/new-agreement', [
 formRouter.post('/account', [
     tokenMiddleware,
 ], formContoller.getOriginalAccount);
+
+module.exports = {
+    formRouter
+}

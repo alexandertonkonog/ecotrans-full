@@ -252,4 +252,4 @@ class IBlockContoller {
     }
 }   
 
-export default new IBlockContoller();
+module.exports = new IBlockContoller();

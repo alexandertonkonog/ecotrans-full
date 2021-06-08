@@ -1,11 +1,11 @@
-import Router from 'express';
-import messageController from '../controllers/messageController';
+const Router = require('express');
+const messageController = require('../controllers/messageController');
 const { slugify } = require('transliteration');
 const path = require('path');
 const { tokenMiddleware } = require('../middlewares/authMiddleware');
 const multer  = require("multer");
 
-export const messageRouter = Router();
+const messageRouter = Router();
 
 const imagesDocs = [
     "image/jpeg", 
@@ -66,3 +66,7 @@ messageRouter.post('/new-message', [
             fileSize: 1000000
         }}).array('file', 3)
 ], messageController.setNewMessage);
+
+module.exports = {
+    messageRouter
+}

@@ -193,4 +193,4 @@ class AuthContoller {
     }
 }
 
-export default new AuthContoller();
+module.exports = new AuthContoller();

@@ -6,7 +6,7 @@ import AddressField from './AddressField';
 import { composeValidators, isEmail, isLength, isNumeric, isAdressRequired, formatNumber } from '../../../../dev/validate';
 
 const Form = (props) => {
-    let userType = useField('personType').input.value;
+    let userType = useField('userType').input.value;
     let formData = useForm();
     let contact = [
         {id: 1, req: true, placeHolder:"Введите ФИО", type:1, text:"ФИО контактного лица", name: "contactName", validate: isLength(10, 50)},
@@ -18,7 +18,7 @@ const Form = (props) => {
     let rec = [
         {id: 1, placeHolder: getPlaceholder(10), type:1, text:"ИНН", req:true, name: 'inn', validate: composeValidators(isLength(5, 20), isNumeric)},
         {id: 2, placeHolder: getPlaceholder(10), type:1, text:"Р/с", req:true, name: 'rs', validate: composeValidators(isLength(10, 20), isNumeric)},
-        {id: 3, placeHolder: getPlaceholder(10), type:1, text:"КПП", req:true, name: 'kpp', validate: composeValidators(isLength(5, 20), isNumeric)},
+        {id: 3, placeHolder: getPlaceholder(10), type:1, text:"КПП", req:false, name: 'kpp',},
         {id: 4, placeHolder: getPlaceholder(10), type:1, text:"Корр/с", req:true, name: 'ks', validate: composeValidators(isLength(10, 20), isNumeric)},
         {id: 5, placeHolder: getPlaceholder(10), type:1, text:"ОГРН", req:true, name: 'ogrn', validate: composeValidators(isLength(5, 20), isNumeric)},
         {id: 6, placeHolder: getPlaceholder(10), type:1, text:"БИК", req:true, name: 'bik', validate: composeValidators(isLength(5, 20), isNumeric)},
